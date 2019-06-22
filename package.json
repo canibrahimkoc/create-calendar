@@ -27,10 +27,7 @@
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.10.0",
     "jquery": "^3.4.1",
-    "jquery-validation": "^1.19.1",
     "moment": "^2.24.0",
-    "normalize.css": "^8.0.1",
-    "popper.js": "^1.0.1",
     "timepicker": "^1.11.15"
   }
 }

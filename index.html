@@ -5,14 +5,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- Normalize -->
-        <link rel="stylesheet" href="node_modules/normalize.css/">
         <!-- FullCalendar -->
         <link rel="stylesheet" href="node_modules/fullcalendar/dist/fullcalendar.min.css">
         <!-- Bootstrap -->
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- Icon Picker -->
-        <link rel="stylesheet" href="node_modules/bootstrap-iconpicker/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css">
+        <link rel="stylesheet" href="node_modules/bootstrap-iconpicker/dist/css/bootstrap-iconpicker.min.css">
         <!-- Data Picker -->
         <link rel="stylesheet" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
         <!-- Time Picker -->
@@ -27,41 +25,32 @@
         <div id="popover-wrap" style="display: none">
             <div class="popover-event-info">
                 <div class="card">
-                    <ul class="list-group list-group-flush" id="eventContent">
-                    </ul>
+                    <ul class="list-group list-group-flush" id="eventContent"></ul>
                 </div>
             </div>
             <div class="popover-event-controls my-2 pt-2">
-                <div class="btn-toolbar d-flex flex-row justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group" role="group" aria-label="First group">
+                <div class="btn-toolbar d-flex flex-row justify-content-between">
+                    <div class="btn-group">
                         <button type="button" class="btn btn-outline-danger" id="btn-event-remove">Sil</button>
                     </div>
-                    <div class="btn-group" role="group" aria-label="First group">
+                    <div class="btn-group">
                         <button type="button" class="btn btn-outline-primary" id="btn-event-edit">Düzenle</button>
                         <button type="button" id="btn-event-done" class="btn btn-outline-success">Yapıldı</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade animated slideInDown" id="eventAdd" tabindex="-1" role="dialog" aria-labelledby="eventAddLabel" aria-hidden="true">
+        <div class="modal fade" id="eventAdd" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="eventAddLabel">Etkinlik Ekle</h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <i class="cutie icon-ios-close-circle cute-spin-1x"></i>
+                        <h5 class="modal-title">Etkinlik Ekle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body" id="eventAddBody">
-                        <div class="form-row align-center justify-content-center">
-                            <div class="alert alert-success" role="alert" id="success_message">
-                                <strong>Kaydedildi!</strong>
-                            </div>
-                            <div class="alert alert-danger" role="alert" id="error_message">
-                                <i class="cutie icon-attention cf-lg" aria-hidden="true"></i> <strong>Oops!</strong> Birkaç bilgi eksik. Doldurun ve tekrar göndermeyi deneyin.
-                            </div>
-                        </div>
-                        <form id="add_event" action="#" method="post" class="needs-validation" enctype="multipart/form-data" role="form" autocomplete="off" novalidate>
+                        <form id="add_event" action="#" method="post" enctype="multipart/form-data" role="form" autocomplete="off" novalidate>
                             <div class="form-row" id="itl">
                                 <div class="form-group col-12">
                                     <div class="input-group">
@@ -77,17 +66,17 @@
                                 </div>
                             </div>
                             <div class="form-row justify-content-center" id="datepair">
-                                <div class="form-group has-icon col col-sm">
+                                <div class="form-group has-icon col-sm">
                                     <input type="text" class="form-control date start" id="start_date" name="start_date" required>
                                     <i class="fa fa-calendar form-icon"></i>
                                 </div>
                                 <div class="form-group has-icon col-sm time-group">
-                                    <input type="text" class="form-control time start" name="start_time" id="start_time" value="" placeholder="9:00am" autocomplete="off">
+                                    <input type="text" class="form-control time start" name="start_time" id="start_time" value="" placeholder="9:00" autocomplete="off">
                                     <i class="fa fa-clock-o form-icon"></i>
                                 </div>
                                 <span class="form-text px5 mb-3 mt-0 align-self-center">&</span>
                                 <div class="form-group has-icon col-sm time-group">
-                                    <input type="text" class="form-control time end" name="end_time" id="end_time" value="" placeholder="10:00am" autocomplete="off">
+                                    <input type="text" class="form-control time end" name="end_time" id="end_time" value="" placeholder="10:00" autocomplete="off">
                                     <i class="fa fa-clock-o form-icon"></i>
                                 </div>
                                 <div class="form-group has-icon col col-sm">
@@ -149,12 +138,12 @@
     <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
     <!-- FullCalendar -->
     <script src="node_modules/fullcalendar/dist/fullcalendar.min.js"></script>
-    <!-- Popper -->
-    <script src="node_modules/popper.js/dist/popper.min.js"></script>
     <!-- Bootstrap -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.1/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
     <!-- Icon Picker -->
-    <script src="node_modules/bootstrap-iconpicker/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
+    <script src="node_modules/bootstrap-iconpicker/dist/js/bootstrap-iconpicker.bundle.min.js"></script>
     <!-- Data Pair -->
     <script src="node_modules/datepair.js/dist/jquery.datepair.min.js"></script>
     <!-- Data Picker -->
@@ -162,6 +151,6 @@
     <!-- Time Picker -->
     <script src="node_modules/timepicker/jquery.timepicker.min.js"></script>
     <!-- Custom Script -->
-    <script src="dist/js/script.js"></script>
+    <script src="dist/js/custom.js"></script>
 	</body>
 </html>
