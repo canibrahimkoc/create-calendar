@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html lang="en" >
+﻿<!DOCTYPE html>
+<html lang="tr">
 	<head>
-		<meta charset="UTF-8">
         <title>Create Event Form</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css">
-        <link rel="stylesheet" href="https://windyboy1704.github.io/San-Francisco-family/website_resources/css/sfpro-text.css" >
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-        <link rel="stylesheet" href="https://horrorchix89.github.io/MyCustomCalendar/lib/fonts/cutie-font/css/cutie.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-        <link rel="stylesheet" href="https://horrorchix89.github.io/MyCustomCalendar/scripts/datepicker/css/bootstrap-datepicker-custom.css">
-        <link rel="stylesheet" href="https://horrorchix89.github.io/MyCustomCalendar/scripts/timepicker/jquery.timepicker.css">
-        <link rel="stylesheet" href="https://horrorchix89.github.io/MyCustomCalendar/plugins/bootstrap-iconpicker/css/bootstrap-iconpicker.css">
-		<link rel="stylesheet" href="./style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Normalize -->
+        <link rel="stylesheet" href="node_modules/normalize.css/">
+        <!-- FullCalendar -->
+        <link rel="stylesheet" href="node_modules/fullcalendar/dist/fullcalendar.min.css">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Icon Picker -->
+        <link rel="stylesheet" href="node_modules/bootstrap-iconpicker/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css">
+        <!-- Data Picker -->
+        <link rel="stylesheet" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <!-- Time Picker -->
+        <link rel="stylesheet" href="node_modules/timepicker/jquery.timepicker.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        <!-- Custom Style -->
+        <link rel="stylesheet" href="dist/css/style.css">
 	</head>
 	<body>
+        <div id="calendar"></div>
         <div id="popover-wrap" style="display: none">
             <div class="popover-event-info">
                 <div class="card">
@@ -36,7 +43,6 @@
                 </div>
             </div>
         </div>
-        <div id="calendar"></div>
         <div class="modal fade animated slideInDown" id="eventAdd" tabindex="-1" role="dialog" aria-labelledby="eventAddLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -136,20 +142,26 @@
                 </div>
             </div>
         </div>
-	</body>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.1/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://horrorchix89.github.io/MyCustomCalendar/lib/jquery.validation/dist/jquery.validate.min.js"></script>
-    <script src="https://horrorchix89.github.io/MyCustomCalendar/plugins/bootstrap-iconpicker/js/bootstrap-iconpicker.js"></script>
-    <script src="https://horrorchix89.github.io/MyCustomCalendar/scripts/datepair/dist/jquery.datepair.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/js/i18n/defaults-tr_TR.min.js"></script>
-    <script src="https://horrorchix89.github.io/MyCustomCalendar/scripts/datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="https://horrorchix89.github.io/MyCustomCalendar/scripts/timepicker/jquery.timepicker.js"></script>
-    <script  src="./script.js"></script>
+    </body>
+    <!-- Jquery -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Moment -->
+    <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+    <!-- FullCalendar -->
+    <script src="node_modules/fullcalendar/dist/fullcalendar.min.js"></script>
+    <!-- Popper -->
+    <script src="node_modules/popper.js/dist/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Icon Picker -->
+    <script src="node_modules/bootstrap-iconpicker/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
+    <!-- Data Pair -->
+    <script src="node_modules/datepair.js/dist/jquery.datepair.min.js"></script>
+    <!-- Data Picker -->
+    <script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Time Picker -->
+    <script src="node_modules/timepicker/jquery.timepicker.min.js"></script>
+    <!-- Custom Script -->
+    <script src="dist/js/script.js"></script>
 	</body>
 </html>

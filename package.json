@@ -1,0 +1,36 @@
+{
+  "name": "create-calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canibrahimkoc/create-calendar.git"
+  },
+  "author": "canibrahimkoc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/canibrahimkoc/create-calendar/issues"
+  },
+  "homepage": "https://github.com/canibrahimkoc/create-calendar#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-datepicker": "^1.9.0",
+    "bootstrap-iconpicker": "^1.8.2",
+    "datepair.js": "^0.4.16",
+    "font-awesome": "^4.7.0",
+    "fullcalendar": "^3.10.0",
+    "jquery": "^3.4.1",
+    "jquery-validation": "^1.19.1",
+    "moment": "^2.24.0",
+    "normalize.css": "^8.0.1",
+    "popper.js": "^1.0.1",
+    "timepicker": "^1.11.15"
+  }
+}
