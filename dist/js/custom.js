@@ -193,42 +193,33 @@ $(document).ready(function() {
       ]
   });
 });
-
-
 $("body").on("click", popoverCloseByOutsideClick);
 $("body").on("click", "#btn-event-edit", editEvent);
 $("body").on("click", "#btn-event-remove", removeEvent);
 $("body").on("click", "#btn-event-done", doneEvent);
 $("body").on("click", ".popover .close", closePopovers);
-
 function updateEvent() {
   clearEventEditModal();
 };
-
 function editEvent(e) {
   closePopovers();
   var event = $("#popover-wrap").data();
   prepareEventEditModal(event);
   $('#eventAdd').modal('show');
 };
-
 function prepareEventEditModal(event) {
   $('#event-title').val(event.title);
   $('#event-type').val();
 };
-
 function clearEventEditModal() {
   $('#event-title').val('');
 };
-
 function removeEvent(e) {
   event = $("#popover-wrap").data();
 };
-
 function doneEvent(e) {
   event = $("#popover-wrap").data();
 };
-
 function popoverCloseByOutsideClick(e) {
   var isNotPopover = !$(e.target).hasClass('.popover'),
       isNotPopoverChild = ($(e.target).parents('.popover').length === 0),
@@ -238,11 +229,9 @@ function popoverCloseByOutsideClick(e) {
       closePopovers();
   }
 };
-
 function closePopovers() {
   $("#calendar .popover.show").popover('hide');
 };
-
 function getPopoverTitle(event = null) {
   var title = event.title,
       closeBtn = '<a href="#" class="close" data-dismiss="alert">&times;</a>';
@@ -256,7 +245,6 @@ function getPopoverTitle(event = null) {
   title += '<span class="close" data-dismiss="popover" aria-hidden="true">&times;</span>'
   return title;
 };
-
 function getPopoverContent(event) {
   closePopovers();
   var template = `
@@ -270,14 +258,24 @@ function getPopoverContent(event) {
   $("#popover-wrap").data(event);
   return $("#popover-wrap").html();
 };
-
 $(function(e) {
   var container = $("#add_event").length > 0 ? $("#add_event").parent() : "body";
   var container2 = $(".modal-body");
+    $.fn.datepicker.dates['tr'] = {
+        days: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+        daysShort: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+        daysMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+        months: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran', 'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+        monthsShort: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+        today: 'Bugün',
+        clear: 'Temizle',
+        firstDay: 1
+    };
   $("#datepair .date").datepicker({
       autoclose: true,
       container: container2,
       format: "M d, yyyy",
+      language: 'tr',
       maxViewMode: 1,
       orientation: "bottom auto",
       disableTouchKeyboard: true,
@@ -306,19 +304,13 @@ $(function(e) {
   $('#iconpicker').iconpicker({
       align: 'center',
       arrowClass: 'btn-danger',
-      arrowPrevIconClass: 'fas fa-angle-left',
-      arrowNextIconClass: 'fas fa-angle-right',
       cols: 10,
-      footer: true,
-      header: true,
+      footer: false,
+      header: false,
       icon: 'fa fa-bomb',
       iconset: 'fontawesome4',
-      labelHeader: '{0} of {1} pages',
-      labelFooter: '{0} - {1} of {2} icons',
-      placement: 'bottom',
       rows: 5,
-      search: true,
-      searchText: 'Search',
+      search: false,
       selectedClass: 'btn-success',
       unselectedClass: ''
   });
@@ -366,11 +358,13 @@ $(function(e) {
               title
                   .val("")
                   .removeAttr("disabled")
+                  .removeClass("disabled")
                   .prop("disabled", false);
               icons
                   .val("")
                   //.iconpicker("render")
                   .removeAttr("disabled")
+                  .removeClass("disabled")
                   .prop("disabled", false);
               location.show();
               url.show();

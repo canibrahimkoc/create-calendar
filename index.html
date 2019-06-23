@@ -1,156 +1,159 @@
 ﻿<!DOCTYPE html>
 <html lang="tr">
 	<head>
-        <title>Create Event Form</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- FullCalendar -->
-        <link rel="stylesheet" href="node_modules/fullcalendar/dist/fullcalendar.min.css">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <!-- Icon Picker -->
-        <link rel="stylesheet" href="node_modules/bootstrap-iconpicker/dist/css/bootstrap-iconpicker.min.css">
-        <!-- Data Picker -->
-        <link rel="stylesheet" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-        <!-- Time Picker -->
-        <link rel="stylesheet" href="node_modules/timepicker/jquery.timepicker.min.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-        <!-- Custom Style -->
-        <link rel="stylesheet" href="dist/css/style.css">
+		<title>Create Event Form</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- FullCalendar -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="node_modules/fullcalendar/dist/fullcalendar.min.css">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<!-- Icon Picker -->
+		<link rel="stylesheet" href="node_modules/bootstrap-iconpicker/dist/css/bootstrap-iconpicker.min.css">
+		<!-- Data Picker -->
+		<link rel="stylesheet" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+		<!-- Time Picker -->
+		<link rel="stylesheet" href="node_modules/timepicker/jquery.timepicker.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+		<!-- Custom Style -->
+		<link rel="stylesheet" href="dist/css/style.css">
 	</head>
 	<body>
-        <div id="calendar"></div>
-        <div id="popover-wrap" style="display: none">
-            <div class="popover-event-info">
-                <div class="card">
-                    <ul class="list-group list-group-flush" id="eventContent"></ul>
-                </div>
-            </div>
-            <div class="popover-event-controls my-2 pt-2">
-                <div class="btn-toolbar d-flex flex-row justify-content-between">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-outline-danger" id="btn-event-remove">Sil</button>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-outline-primary" id="btn-event-edit">Düzenle</button>
-                        <button type="button" id="btn-event-done" class="btn btn-outline-success">Yapıldı</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="eventAdd" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Etkinlik Ekle</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="eventAddBody">
-                        <form id="add_event" action="#" method="post" enctype="multipart/form-data" role="form" autocomplete="off" novalidate>
-                            <div class="form-row" id="itl">
-                                <div class="form-group col-12">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend">
-                                            <button type="button" class="btn btn-default" name="eventicon" id="iconpicker"></button>
-                                        </span>
-                                        <input type="text" class="form-control" name="title" id="title" placeholder="Etkinlik Adı" autocapitalize="words" autocomplete="off" autocorrect="on" spellcheck="true" required>
-                                    </div>
-                                </div>
-                                <div class="form-group has-icon col">
-                                    <input type="text" class="form-control" name="location" id="eventloca" placeholder="Etkinlik Konumu" autocapitalize="words" autocomplete="off">
-                                    <i class="fa fa-map-marker form-icon"></i>
-                                </div>
-                            </div>
-                            <div class="form-row justify-content-center" id="datepair">
-                                <div class="form-group has-icon col-sm">
-                                    <input type="text" class="form-control date start" id="start_date" name="start_date" required>
-                                    <i class="fa fa-calendar form-icon"></i>
-                                </div>
-                                <div class="form-group has-icon col-sm time-group">
-                                    <input type="text" class="form-control time start" name="start_time" id="start_time" value="" placeholder="9:00" autocomplete="off">
-                                    <i class="fa fa-clock-o form-icon"></i>
-                                </div>
-                                <span class="form-text px5 mb-3 mt-0 align-self-center">&</span>
-                                <div class="form-group has-icon col-sm time-group">
-                                    <input type="text" class="form-control time end" name="end_time" id="end_time" value="" placeholder="10:00" autocomplete="off">
-                                    <i class="fa fa-clock-o form-icon"></i>
-                                </div>
-                                <div class="form-group has-icon col col-sm">
-                                    <input type="text" class="form-control date end" id="end_date" name="end_date">
-                                    <i class="fa fa-calendar form-icon"></i>
-                                </div>
-                            </div>
-                            <div class="form-row align-middle align-items-center">
-                                <div class="form-group col-sm-auto">
-                                    <div class="custom-control custom-switch custom-control-inline">
-                                        <input class="custom-control-input" type="checkbox" name="allday" id="allday" value="1">
-                                        <label class="custom-control-label" for="allday">Tüm Gün</label>
-                                    </div>
-                                    <div class="custom-control custom-switch custom-control-inline">
-                                        <input class="custom-control-input" type="checkbox" name="busy" id="busy" value="1">
-                                        <label class="custom-control-label" for="busy">Musait Değilim</label>
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm">
-                                    <select class="form-control" name="repeat" id="repeat">
-                                        <option value="no-repeat" selected>Tekrarlama</option>
-                                        <option value="daily">Her gün tekrarla</option>
-                                        <option value="weely">Her hafta tekrarla</option>
-                                        <option value="monthly">Her ay tekrarla</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm">
-                                    <select class="form-control" name="repeat" id="repeat">
-                                        <option selected>Mavi Renk</option>
-                                        <option value="">Kırmızı Renk</option>
-                                        <option value="">Sarı Renk</option>
-                                        <option value="">Yeşil Renk</option>
-                                        <option value="">Mor Renk</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col has-icon">
-                                    <input type="url" class="form-control" name="eventurl" id="eventurl" placeholder="URL">
-                                    <i class="fa fa-globe form-icon"></i>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Açıklama" rows="4" name="eventdesc" id="eventdesc"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary btn-cancel" id="cancelbtn" data-dismiss="modal">Vazgeç</button>
-                        <button type="submit" class="btn btn-outline-primary btn-submit" id="submitbtn">Ekle</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-    <!-- Jquery -->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <!-- Moment -->
-    <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
-    <!-- FullCalendar -->
-    <script src="node_modules/fullcalendar/dist/fullcalendar.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.1/popper.min.js"></script>
+		<section id="ck-calendar">
+			<div id="calendar"></div>
+			<div id="popover-wrap" style="display: none">
+				<div class="popover-event-info">
+					<div class="card">
+						<ul class="list-group list-group-flush" id="eventContent"></ul>
+					</div>
+				</div>
+				<div class="popover-event-controls my-2 pt-2">
+					<div class="btn-toolbar d-flex flex-row justify-content-between">
+						<div class="btn-group">
+							<button type="button" class="btn btn-outline-danger" id="btn-event-remove">Sil</button>
+						</div>
+						<div class="btn-group">
+							<button type="button" class="btn btn-outline-primary" id="btn-event-edit">Düzenle</button>
+							<button type="button" id="btn-event-done" class="btn btn-outline-success">Yapıldı</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="eventAdd" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Etkinlik Ekle</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body" id="eventAddBody">
+							<form id="add_event" action="#" method="post" enctype="multipart/form-data" role="form" autocomplete="off" novalidate>
+								<div class="form-row" id="itl">
+									<div class="form-group col-12">
+										<div class="input-group">
+											<span class="input-group-prepend">
+											<button type="button" class="btn btn-default" name="eventicon" id="iconpicker"></button>
+											</span>
+											<input type="text" class="form-control" name="title" id="title" placeholder="Etkinlik Adı" autocapitalize="words" autocomplete="off" autocorrect="on" spellcheck="true" required>
+										</div>
+									</div>
+									<div class="form-group has-icon col">
+										<input type="text" class="form-control" name="location" id="eventloca" placeholder="Etkinlik Konumu" autocapitalize="words" autocomplete="off">
+										<i class="fa fa-map-marker form-icon"></i>
+									</div>
+								</div>
+								<div class="form-row justify-content-center" id="datepair">
+									<div class="form-group has-icon col-sm">
+										<input type="text" class="form-control date start" id="start_date" name="start_date" required>
+										<i class="fa fa-calendar form-icon"></i>
+									</div>
+									<div class="form-group has-icon col-sm time-group">
+										<input type="text" class="form-control time start" name="start_time" id="start_time" value="" placeholder="9:00" autocomplete="off">
+										<i class="fa fa-clock-o form-icon"></i>
+									</div>
+									<span class="form-text px5 mb-3 mt-0 align-self-center">&</span>
+									<div class="form-group has-icon col-sm time-group">
+										<input type="text" class="form-control time end" name="end_time" id="end_time" value="" placeholder="10:00" autocomplete="off">
+										<i class="fa fa-clock-o form-icon"></i>
+									</div>
+									<div class="form-group has-icon col col-sm">
+										<input type="text" class="form-control date end" id="end_date" name="end_date">
+										<i class="fa fa-calendar form-icon"></i>
+									</div>
+								</div>
+								<div class="form-row align-middle align-items-center">
+									<div class="form-group col-sm-auto">
+										<div class="custom-control custom-switch custom-control-inline">
+											<input class="custom-control-input" type="checkbox" name="allday" id="allday" value="1">
+											<label class="custom-control-label" for="allday">Tüm Gün</label>
+										</div>
+										<div class="custom-control custom-switch custom-control-inline">
+											<input class="custom-control-input" type="checkbox" name="busy" id="busy" value="1">
+											<label class="custom-control-label" for="busy">Musait Değilim</label>
+										</div>
+									</div>
+									<div class="form-group col-sm">
+										<select class="form-control" name="repeat" id="repeat">
+											<option value="no-repeat" selected>Tekrarlama</option>
+											<option value="daily">Her gün tekrarla</option>
+											<option value="weely">Her hafta tekrarla</option>
+											<option value="monthly">Her ay tekrarla</option>
+										</select>
+									</div>
+									<div class="form-group col-sm">
+										<select class="form-control" name="repeat" id="repeat">
+											<option selected>Mavi Renk</option>
+											<option value="">Kırmızı Renk</option>
+											<option value="">Sarı Renk</option>
+											<option value="">Yeşil Renk</option>
+											<option value="">Mor Renk</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col has-icon">
+										<input type="url" class="form-control" name="eventurl" id="eventurl" placeholder="URL">
+										<i class="fa fa-globe form-icon"></i>
+									</div>
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" placeholder="Açıklama" rows="4" name="eventdesc" id="eventdesc"></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-secondary btn-cancel" id="cancelbtn" data-dismiss="modal">Vazgeç</button>
+							<button type="submit" class="btn btn-outline-primary btn-submit" id="submitbtn">Ekle</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<!-- Jquery -->
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<!-- Moment -->
+	<script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+	<!-- FullCalendar -->
+	<script src="node_modules/fullcalendar/dist/fullcalendar.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.1/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- Icon Picker -->
-    <script src="node_modules/bootstrap-iconpicker/dist/js/bootstrap-iconpicker.bundle.min.js"></script>
-    <!-- Data Pair -->
-    <script src="node_modules/datepair.js/dist/jquery.datepair.min.js"></script>
-    <!-- Data Picker -->
-    <script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <!-- Time Picker -->
-    <script src="node_modules/timepicker/jquery.timepicker.min.js"></script>
-    <!-- Custom Script -->
-    <script src="dist/js/custom.js"></script>
+	<!-- <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+	<!-- Icon Picker -->
+	<script src="node_modules/bootstrap-iconpicker/dist/js/bootstrap-iconpicker.bundle.min.js"></script>
+	<!-- Data Pair -->
+	<script src="node_modules/datepair.js/dist/jquery.datepair.min.js"></script>
+	<!-- Data Picker -->
+	<script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<!-- Time Picker -->
+	<script src="node_modules/timepicker/jquery.timepicker.min.js"></script>
+	<!-- Custom Script -->
+	<script src="dist/js/custom.js"></script>
 	</body>
 </html>
